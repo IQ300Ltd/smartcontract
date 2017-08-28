@@ -7,7 +7,6 @@ contract Iq300Token is StandardToken, Active {
     string public name;
     string public symbol;
     uint public decimals = 2;
-    bool public closed = false;
     uint public projectId;
 
     uint256 public reserved;
@@ -45,7 +44,7 @@ contract Iq300Token is StandardToken, Active {
         mainExecutor = Participant({userId: userId, addr: _addr, paidAmount: 0, reservedAmount: 0});
     }
 
-    function addParticipant(address _addr, uint _userId, uint _taskId, uint _amount) onlyOwner onlyActive {
+    function addParticipant(address _addr, uint _userId, uint _taskId, uint256 _amount) onlyOwner onlyActive {
         require(balances[this] - _amount - reserved >= 0);
         if (subExecutors[_addr].userId == 0) {
             subExecutors[_addr] = Participant({userId: _userId, addr: _addr, paidAmount: 0, reservedAmount: 0});
@@ -77,7 +76,7 @@ contract Iq300Token is StandardToken, Active {
         participant.paidAmount += payment.amount;
         payment.isPaid = true;
         reserved -= payment.amount;
-        transfer(_addr, payment.amount);
+        transferFrom(this, _addr, 100);
     }
 
      function close() onlyOwner onlyActive  {
