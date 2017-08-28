@@ -1,0 +1,14 @@
+{
+  "name": "iq300token",
+  "version": "1.0.0",
+  "description": "",
+  "main": "truffle.js",
+  "directories": {
+    "test": "test"
+  },
+  "author": "Elvir",
+  "license": "ISC",
+  "dependencies": {
+    "zeppelin-solidity": "^1.2.0"
+  }
+}
